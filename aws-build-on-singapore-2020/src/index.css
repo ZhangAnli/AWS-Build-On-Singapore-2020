@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(221, 221, 221); 
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+img { 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px; 
+  max-width: 180px; 
+}
+
+h1 { 
+  text-align: center;
+  padding: 10px; 
+}
+
+form { 
+  text-align: center;
+}
+
+hr{ 
+  height: 1px; 
+  margin: 0px; 
+  padding: 0px; 
+  background-color: black; 
+}
+
+#logoHR { 
+  width: 100% !important; 
+}
