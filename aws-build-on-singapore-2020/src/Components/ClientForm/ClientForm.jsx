@@ -3,14 +3,14 @@ import "./ClientForm.css";
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-
 class ClientForm extends Component { 
 
     constructor(props){ 
         super(props) 
         this.state ={ 
-            Name:"", 
+            ClientID:"", 
             Age:"", 
+            Income:"", 
             InvestmentPeriod:"", 
             BankAccountSavings:"", 
             CreditScore:"", 
@@ -27,23 +27,59 @@ class ClientForm extends Component {
         }
     }
 
+    getData() {
+        // create a new XMLHttpRequest
+        var xhr = new XMLHttpRequest(); 
+    
+        // get a callback when the server responds
+        xhr.addEventListener('load', () => {
+          // update the state of the component with the result here
+          console.log(xhr.responseText); 
+        })
+
+        // open the request with the verb and the url
+        xhr.open('POST', 'https://cors-anywhere.herokuapp.com/https://ebjyty6n50.execute-api.us-east-2.amazonaws.com/awsbuildon/awsbuildonhandler/')
+
+        // send the request
+        xhr.send(JSON.stringify({ 
+            "data": this.state.ClientID + "," 
+            + this.state.Age + "," 
+            + this.state.Income + ","
+            + this.state.InvestmentPeriod + ","  
+            + this.state.BankAccountSavings + ","  
+            + this.state.CreditScore + ","  
+            + this.state.MonthlyOutwardSpending + ","  
+            + this.state.TimeAndCommitment + ","  
+            + this.state.NumberOfDependencies + ","  
+            + this.state.CountryOfResidence + ","  
+            + this.state.EducationLevel + ","  
+            + this.state.MaritalStatus + ","  
+            + this.state.Nationality + ","  
+            + this.state.Occupation + ","  
+            + this.state.RiskAppetite + ","  
+            + this.state.RetirementPlan
+        }))
+    }
+
     handleSubmit = (event) => { 
         event.preventDefault(); 
 
-        if (this.state.Name.length === 0 || 
+        if (this.state.ClientID.length === 0 || 
             this.state.Age.length === 0 || 
+            this.state.Income.length === 0 ||
             this.state.InvestmentPeriod.length === 0 ||
             this.state.BankAccountSavings.length === 0 ||
             this.state.CreditScore.length === 0 ||
             this.state.MonthlyOutwardSpending.length === 0 ||
             this.state.TimeAndCommitment.length === 0 ||    
             this.state.NumberOfDependencies.length === 0 ||   
-            this.state.Name.length === 0 ||  
-            this.state.Name.length === 0 || 
-            this.state.Name.length === 0 ||
-            this.state.Name.length === 0 ||
-            this.state.Name.length === 0 ||
-            this.state.Name.length === 0
+            this.state.CountryOfResidence.length === 0 ||  
+            this.state.EducationLevel.length === 0 || 
+            this.state.MaritalStatus.length === 0 ||
+            this.state.Nationality.length === 0 ||
+            this.state.Occupation.length === 0 ||
+            this.state.RiskAppetite.length === 0 ||
+            this.state.RetirementPlan.length === 0
             ) { 
           console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
           alert("Please fill in all fields before submitting."); 
@@ -51,6 +87,27 @@ class ClientForm extends Component {
         } else {
             const data = this.state; 
             console.log(data); 
+            // Submit to AWS 
+            this.getData(); 
+
+            console.log(JSON.stringify({ 
+                "data": this.state.ClientID + "," 
+                + this.state.Age + "," 
+                + this.state.Income + ","
+                + this.state.InvestmentPeriod + ","  
+                + this.state.BankAccountSavings + ","  
+                + this.state.CreditScore + ","  
+                + this.state.MonthlyOutwardSpending + ","  
+                + this.state.TimeAndCommitment + ","  
+                + this.state.NumberOfDependencies + ","  
+                + this.state.CountryOfResidence + ","  
+                + this.state.EducationLevel + ","  
+                + this.state.MaritalStatus + ","  
+                + this.state.Nationality + ","  
+                + this.state.Occupation + ","  
+                + this.state.RiskAppetite + ","  
+                + this.state.RetirementPlan
+            }))
         }
 
     }
@@ -62,7 +119,6 @@ class ClientForm extends Component {
         })
     }
 
-
     render() {
         return (
             <div>
@@ -73,8 +129,9 @@ class ClientForm extends Component {
                         <h4 className="header"> Part 1</h4><hr/>
 
                         {/* Continuous */}
-                        <input type="text" placeholder="Name" className = "clientInput" name="Name" onChange={this.handleChange}/> 
+                        <input type="number" placeholder="Client ID" className = "clientInput" name="ClientID" onChange={this.handleChange}/> 
                         <input type="number" placeholder="Age" className = "clientInput" name="Age" onChange={this.handleChange}/> 
+                        <input type="number" placeholder="Income" className = "clientInput" name="Income" onChange={this.handleChange}/> 
                         <input type="number" placeholder="Investment period (months)" className = "clientInput" name="InvestmentPeriod" onChange={this.handleChange}/> 
                         <input type="number" placeholder="Bank Account Savings (SGD)" className = "clientInput" name="BankAccountSavings" onChange={this.handleChange}/> 
                         <input type="number" placeholder="Credit Score" className = "clientInput" name="CreditScore" onChange={this.handleChange}/> 
@@ -86,68 +143,60 @@ class ClientForm extends Component {
                         {/* Categorical */} 
                         <select  className = "clientInput" name="CountryOfResidence" onChange={this.handleChange}>
                             <option value="">--Please choose Country of Residence--</option>
-                            <option value="Singapore">Singapore</option>
-                            <option value="OutsideSingapore">Outside Singapore</option>
+                            <option value="0">Singapore</option>
+                            <option value="1">Outside Singapore</option>
                         </select>
 
                         <select  className = "clientInput" name="EducationLevel" onChange={this.handleChange}>
                             <option value="">--Please choose Education Level--</option>
-                            <option value="Preschool">Pre-School</option>
-                            <option value="PrimarySchool">PrimarySchool</option>
-                            <option value="SecondarySchool">Secondary School</option>
-                            <option value="Diploma">Diploma</option>
-                            <option value="ALevel">A-Level</option>
-                            <option value="Degree">Degree</option>
-                            <option value="Masters">Masters</option>
-                            <option value="PhD">PhD</option>
+                            <option value="0">Pre-School</option>
+                            <option value="1">PrimarySchool</option>
+                            <option value="2">Secondary School</option>
+                            <option value="3">Diploma</option>
+                            <option value="4">A-Level</option>
+                            <option value="5">Degree</option>
+                            <option value="6">Masters</option>
+                            <option value="7">PhD</option>
                         </select>
 
                         <select  className = "clientInput" name="MaritalStatus" onChange={this.handleChange}>
                             <option value="">--Please choose Marital Status--</option>
-                            <option value="Married">Married</option>
-                            <option value="Single">Single</option>
+                            <option value="0">Married</option>
+                            <option value="1">Single</option>
                         </select>
 
                         <select  className = "clientInput" name="Nationality" onChange={this.handleChange}>
                             <option value="">--Please choose Nationality--</option>
-                            <option value="Singapore">Singapore</option>
-                            <option value="Permanent Resident">Permanent Resident</option>
-                            <option value="Foreigner">Foreigner</option>
-                        </select>
-
-                        <select  className = "clientInput" name="RiskAppetite" onChange={this.handleChange}>
-                            <option value="">--Please choose Risk Appetite--</option>
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                            <option value="Very High">Very High</option>
+                            <option value="0">Singapore</option>
+                            <option value="1">Permanent Resident</option>
+                            <option value="2">Foreigner</option>
                         </select>
 
                         <select  className = "clientInput" name="Occupation" onChange={this.handleChange}>
-                            <option value="">--Please choose Occupation--</option>
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                            <option value="Very High">Very High</option>
+                            <option value=''>--Please choose Occupation--</option>
+                            <option value="0">Chemical Industries</option>
+                            <option value="1">Agriculture, Plantations, OtherRuralSectors</option>
+                            <option value="2">Basic Metal Production</option>
+                            <option value="3">Chemical Industries</option>
+                            <option value="4">Commerce</option>
+                            <option value="5">Construction</option>
+                            <option value="6">Education</option>
+                            <option value="7">FinancialServices</option>
+                            <option value="8">Food, Drink, Tobacco</option>
                         </select>
-                    {/* 
-                        <select  className = "clientInput" name="RetirementPlan">
-                            <option value="">--Please choose Occupation--</option>
-                            <option value="IndustriesAndSectors">Industries and Sectors</option>
-                            <option value="AgriculturePlantationsOtherRuralSectors">Agriculture, Plantations, OtherRuralSectors</option>
-                            <option value="BasicMetalProduction">Basic Metal Production</option>
-                            <option value="ChemicalIndustries">Chemical Industries</option>
-                            <option value="Commerce">Commerce</option>
-                            <option value="Construction">Construction</option>
-                            <option value="Education">Education</option>
-                            <option value="FinancialServices">FinancialServices</option>
-                            <option value="FoodDrinkTobacco">Food, Drink, Tobacco</option>
-                        </select> */}
+
+                        <select  className = "clientInput" name="RiskAppetite" onChange={this.handleChange}>
+                            <option value=''>--Please choose Risk Appetite--</option>
+                            <option value="0">Low</option>
+                            <option value="1">Medium</option>
+                            <option value="2">High</option>
+                            <option value="3">Very High</option>
+                        </select>
 
                         <select  className = "clientInput" name="RetirementPlan" onChange={this.handleChange}>
-                            <option value="">--Please choose Retirement Plan--</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
+                            <option value=''>--Please choose Retirement Plan--</option>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
                         </select>
                           
                         <br/>

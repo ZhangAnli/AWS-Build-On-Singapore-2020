@@ -1,0 +1,61 @@
+input { 
+    padding: 20px; 
+    min-width: 80%; 
+    border-color: white; 
+    border-style: solid; 
+    border-bottom-color: rgb(196, 195, 195); 
+    margin: 0px 10px; 
+    outline: none; 
+    padding-left: 0px; 
+}
+
+select { 
+    padding: 20px; 
+    min-width: 80%; 
+    border-color: white; 
+    border-style: solid; 
+    border-bottom-color: rgb(196, 195, 195); 
+    margin: 0px 10px; 
+    outline: none; 
+    position: left !important; 
+    color: rgb(87, 87, 87); 
+    border-bottom-color: rgb(194, 194, 194); 
+}
+
+form { 
+    padding-bottom: 40px; 
+}
+
+Button { 
+    width: 50%; 
+    margin-top: 30px !important; 
+    background-color: rgb(194, 194, 194) !important; 
+    color: rgb(80, 80, 80); 
+}
+
+.paper { 
+    max-width: 800px; 
+    margin: auto; 
+    border-radius: 10px; 
+}
+
+h4 { 
+    color: rgb(120,120,120); 
+}
+
+h3 { 
+    padding-top: 30px;
+}
+
+hr {
+    background-color: rgb(120,120,120); 
+    height: 1px;
+    width: 80%; 
+    margin: auto; 
+}
+
+#logoHr { 
+    height: 1px;
+    width: 100% !important; 
+    margin: auto; 
+}
