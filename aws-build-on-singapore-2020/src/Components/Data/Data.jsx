@@ -1,28 +1,37 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import { Bar } from "react-chartjs-2"; 
 import "./Data.css";
 import Paper from '@material-ui/core/Paper';
-
-const state = {
-    labels: ['Cluster 1', 'Cluster 2', 'Cluster 3 ',
-             'Cluster 4', 'Cluster 5', 'Cluster 6', 'Cluster 7'],
-    datasets: [
-      {
-        label: 'Client Count',
-        backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(0,0,0,0)',
-        borderWidth: 2,
-        data: [4090, 2234, 1943, 1067, 1044, 601, 578 ]
-      }
-    ]
-  }
-  
+    
   export default class App extends Component {
+    state = {
+      labels: ['Cluster 1', 'Cluster 2', 'Cluster 3 ',
+               'Cluster 4', 'Cluster 5', 'Cluster 6', 'Cluster 7'],
+      datasets: [
+        {
+          label: 'Client Count',
+          backgroundColor: 'rgba(75,192,192,1)',
+          borderColor: 'rgba(0,0,0,0)',
+          borderWidth: 2,
+          data: [],
+        }
+      ]
+    }
+
+    componentDidMount() {
+      axios.get(`https://cors-anywhere.herokuapp.com/https://ebjyty6n50.execute-api.us-east-2.amazonaws.com/awsbuildon/get`)
+      .then(res => {
+        const data = res.data;
+        this.setState({datasets: [{...this.state.datasets[0], data}]});
+      })
+    }
+
     render() {
       return (
         <Paper className="paper" elevation={10}>
           <Bar
-            data={state}
+            data={this.state}
             options={{
               title:{
                 display:true,
