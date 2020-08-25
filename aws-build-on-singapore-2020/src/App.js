@@ -1,6 +1,8 @@
 import React from 'react';
 import './index.css';
 import ClientForm from './Components/ClientForm/ClientForm.jsx'; 
+import Data from './Components/Data/Data.jsx'; 
+
 
 
 function App() {
@@ -12,7 +14,9 @@ function App() {
 
         <h1> Investment Recommendation </h1>
 
-        <ClientForm/>
+        <ClientForm/><br/> 
+
+        <Data/><br/> 
         
 
     </div>
