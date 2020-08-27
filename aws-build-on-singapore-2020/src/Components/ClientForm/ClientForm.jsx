@@ -129,7 +129,7 @@ class ClientForm extends Component {
                         <h4 className="header"> Part 1</h4><hr/>
 
                         {/* Continuous */}
-                        <input type="number" placeholder="Client ID" className = "clientInput" name="ClientID" onChange={this.handleChange}/> 
+                        <input type="number" placeholder="Client" className = "clientInput" name="ClientID" onChange={this.handleChange}/> 
                         <input type="number" placeholder="Age" className = "clientInput" name="Age" onChange={this.handleChange}/> 
                         <input type="number" placeholder="Income" className = "clientInput" name="Income" onChange={this.handleChange}/> 
                         <input type="number" placeholder="Investment period (months)" className = "clientInput" name="InvestmentPeriod" onChange={this.handleChange}/> 
