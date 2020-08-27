@@ -32,10 +32,10 @@ import Paper from '@material-ui/core/Paper';
             ageData: ageData,
             barState: {
               labels: [...this.state.barState.labels],
-              datasets: [{...this.state.barState.datasets[0], numData}]
+              datasets: [{...this.state.barState.datasets[0], data: numData}]
             }
           }
-        );        
+        );              
       }).catch(err => console.log(err));
     }
 
@@ -45,14 +45,23 @@ import Paper from '@material-ui/core/Paper';
           <Bar
             data={this.state.barState}
             options={{
-              title:{
-                display:true,
-                text:'Cluster Data',
-                fontSize:20
+              title: {
+                display: true,
+                text: 'Cluster Data',
+                fontSize: 20
               },
-              legend:{
-                display:true,
-                position:'right'
+              legend: {
+                display: true,
+                position: 'right'
+              },
+              tooltips: {
+                callbacks: {
+                  label: (tooltipItem, data) => {
+                    let originalLabel = `Number of Clients: ${tooltipItem.value}`;
+                    const ageLabel = `Median Age: ${this.state.ageData[tooltipItem.datasetIndex]}`;                    
+                    return [originalLabel, ageLabel];
+                  }                  
+                }
               }
             }}
           />
