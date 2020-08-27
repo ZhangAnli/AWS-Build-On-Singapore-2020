@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
     
   export default class App extends Component {
     state = {
+      ageData: [],
       barState: {
         labels: ['Cluster 1', 'Cluster 2', 'Cluster 3 ',
                'Cluster 4', 'Cluster 5', 'Cluster 6', 'Cluster 7'],
@@ -24,12 +25,14 @@ import Paper from '@material-ui/core/Paper';
     componentDidMount() {
       axios.get(`https://cors-anywhere.herokuapp.com/https://ebjyty6n50.execute-api.us-east-2.amazonaws.com/awsbuildon/get`)
       .then(res => {        
-        const data = res.data[0];        
+        const numData = res.data[0];
+        const ageData = res.data[1];        
         this.setState(
           {
+            ageData: ageData,
             barState: {
               labels: [...this.state.barState.labels],
-              datasets: [{...this.state.barState.datasets[0], data}]
+              datasets: [{...this.state.barState.datasets[0], numData}]
             }
           }
         );        
