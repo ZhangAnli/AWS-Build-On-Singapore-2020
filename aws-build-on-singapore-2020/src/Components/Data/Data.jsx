@@ -5,7 +5,7 @@ import "./Data.css";
 import Paper from '@material-ui/core/Paper';
     
   export default class App extends Component {
-    state = {
+    state = {      
       ageData: [],
       riskData: [],
       barState: {
@@ -30,7 +30,7 @@ import Paper from '@material-ui/core/Paper';
         const ageData = res.data[1];                
         const riskData = res.data[2];                
         this.setState(
-          {
+          {            
             ageData: ageData,
             riskData: riskData,
             barState: {
