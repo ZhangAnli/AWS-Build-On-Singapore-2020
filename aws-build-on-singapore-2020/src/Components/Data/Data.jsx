@@ -5,7 +5,8 @@ import "./Data.css";
 import Paper from '@material-ui/core/Paper';
     
   export default class App extends Component {
-    state = {      
+    state = {
+      clusterNumber: null,            
       ageData: [],
       riskData: [],
       barState: {
@@ -14,13 +15,28 @@ import Paper from '@material-ui/core/Paper';
         datasets: [
           {
             label: 'Client Count',
-            backgroundColor: 'rgba(75,192,192,1)',
+            backgroundColor: context => {
+              if (this.state.clusterNumber && context.dataIndex === this.state.clusterNumber - 1) {
+                return "#f04747";
+              } else {
+                return "#4870a0";
+              }
+            },
             borderColor: 'rgba(0,0,0,0)',
             borderWidth: 2,
             data: [],
           }
         ]
       }      
+    }
+
+    componentDidUpdate() {
+      const { clusterNumber } = this.props;
+      if (clusterNumber && !this.state.clusterNumber) {
+          this.setState({
+            clusterNumber: clusterNumber,
+          })
+      }         
     }
 
     componentDidMount() {
@@ -39,27 +55,23 @@ import Paper from '@material-ui/core/Paper';
             }
           }
         );              
-      }).catch(err => console.log(err));
+      }).catch(err => console.log(err));  
     }
 
     render() {
       return (
         <Paper className="paper" elevation={10}>
           <Bar
-            data={this.state.barState}
+            data={this.state.barState}                
             options={{
               title: {
                 display: true,
                 text: 'Cluster Data',
                 fontSize: 20
-              },
-              legend: {
-                display: true,
-                position: 'right'
-              },
+              },              
               tooltips: {
                 callbacks: {
-                  label: (tooltipItem, data) => {                    
+                  label: (tooltipItem, data) => {                                        
                     const idx = tooltipItem.index;
                     const originalLabel = `Number of Clients: ${tooltipItem.value}`;
                     const ageLabel = `Median Age: ${this.state.ageData[idx]}`;

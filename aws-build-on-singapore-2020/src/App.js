@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.css';
 import ClientForm from './Components/ClientForm/ClientForm.jsx'; 
-import Data from './Components/Data/Data.jsx';
 import {Client as Styletron} from 'styletron-engine-atomic'; 
 import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider} from 'baseui';
@@ -16,8 +15,7 @@ function App() {
         <hr id="logoHR" /> 
         <h1> Investment Recommendation </h1>
         <ClientForm/>
-        <br/> 
-        <Data/>
+        <br/>         
         <br/>
       </BaseProvider> 
     </StyletronProvider>

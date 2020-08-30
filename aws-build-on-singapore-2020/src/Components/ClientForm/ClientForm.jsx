@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import "./ClientForm.css";
 import InvestmentTable from '../InvestmentTable/InvestmentTable.jsx'
+import Data from '../Data/Data.jsx';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
@@ -195,6 +196,8 @@ class ClientForm extends Component {
         </Paper>
         <br />
         {this.state.clusterNumber && <InvestmentTable clusterNumber={this.state.clusterNumber}/>}
+        <br />
+        <Data clusterNumber={this.state.clusterNumber}/>
       </>
     )
   }
