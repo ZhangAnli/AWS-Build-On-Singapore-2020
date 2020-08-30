@@ -16,7 +16,7 @@ import Paper from '@material-ui/core/Paper';
           {
             label: 'Client Count',
             backgroundColor: context => {
-              if (this.state.clusterNumber && context.dataIndex === this.state.clusterNumber - 1) {
+              if (this.state.clusterNumber && context.dataIndex === this.state.clusterNumber) {
                 return "#f04747";
               } else {
                 return "#4870a0";
