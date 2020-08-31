@@ -81,25 +81,6 @@ class ClientForm extends Component {
     } else {             
       // Submit to AWS 
       this.getData(); 
-
-      // console.log(JSON.stringify({ 
-      //   "data": this.state.ClientID + "," 
-      //   + this.state.Age + "," 
-      //   + this.state.Income + ","
-      //   + this.state.InvestmentPeriod + ","  
-      //   + this.state.BankAccountSavings + ","  
-      //   + this.state.CreditScore + ","  
-      //   + this.state.MonthlyOutwardSpending + ","  
-      //   + this.state.TimeAndCommitment + ","  
-      //   + this.state.NumberOfDependencies + ","  
-      //   + this.state.CountryOfResidence + ","  
-      //   + this.state.EducationLevel + ","  
-      //   + this.state.MaritalStatus + ","  
-      //   + this.state.Nationality + ","  
-      //   + this.state.Occupation + ","  
-      //   + this.state.RiskAppetite + ","  
-      //   + this.state.RetirementPlan
-      // }))
     }
   }
 
