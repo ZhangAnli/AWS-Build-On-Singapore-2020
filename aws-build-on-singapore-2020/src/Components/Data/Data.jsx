@@ -19,7 +19,7 @@ import Paper from '@material-ui/core/Paper';
               if (this.state.clusterNumber && context.dataIndex === this.state.clusterNumber) {
                 return "#f04747";
               } else {
-                return "#4870a0";
+                return "#999999";
               }
             },
             borderColor: 'rgba(0,0,0,0)',
@@ -79,7 +79,14 @@ import Paper from '@material-ui/core/Paper';
                     return [originalLabel, ageLabel, risklabel];
                   }                  
                 }
-              }
+              }, 
+              scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
             }}
           />
         </Paper>
